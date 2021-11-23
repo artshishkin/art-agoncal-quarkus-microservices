@@ -1,12 +1,20 @@
 package net.shyshkin.study.quarkus.microservices.number;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.json.bind.annotation.JsonbTransient;
 import java.time.Instant;
 import java.util.Objects;
 
 public class IsbnNumbers {
 
+    @JsonProperty("isbn_10")
     private String isbn10;
+
+    @JsonProperty("isbn_13")
     private String isbn13;
+
+    @JsonbTransient
     private Instant generationDate;
 
     public IsbnNumbers() {
