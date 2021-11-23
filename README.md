@@ -30,4 +30,11 @@ Start it
 Curl it
 -  `curl http://localhost:8080/api/books`
 
+#####  20. Documenting the Number Microservice
+
+OpenAPI Contract:
+    -  `http://localhost:8080/q/openapi`
+    -  in yaml or json
+Swagger-UI:
+    -  `http://localhost:8080/q/swagger-ui/`   
 
