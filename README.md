@@ -38,3 +38,11 @@ OpenAPI Contract:
 Swagger-UI:
     -  `http://localhost:8080/q/swagger-ui/`   
 
+####  Section 5: Developing the Book Microservice
+
+#####  28. Exposing the Book REST Endpoint
+
+Post a new Book
+-  `curl -X POST http://localhost:8080/api/books -d "title=My great book&year=2020&author=Art Shyshkin&genre=Fantasy"`
+
+
