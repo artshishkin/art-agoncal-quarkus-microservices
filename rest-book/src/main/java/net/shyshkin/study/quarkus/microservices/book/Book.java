@@ -1,21 +1,34 @@
 package net.shyshkin.study.quarkus.microservices.book;
 
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+
 import javax.json.bind.annotation.JsonbDateFormat;
 import javax.json.bind.annotation.JsonbProperty;
 import java.time.Instant;
 
+@Schema(description = "This is a book")
 public class Book {
 
     @JsonbProperty("isbn_13")
+    @Schema(required = true)
     private String isbn13;
+
+    @Schema(required = true)
     private String title;
+
+    @Schema(required = true)
     private String author;
+
     @JsonbProperty("year_of_publication")
+    @Schema(required = true)
     private int yearOfPublication;
+
+    @Schema(required = true)
     private String genre;
 
     @JsonbProperty("creation_date")
     @JsonbDateFormat("yyyy/MM/dd")
+    @Schema(implementation = String.class, format = "date")
     private Instant creationDate;
 
     public String getIsbn13() {
