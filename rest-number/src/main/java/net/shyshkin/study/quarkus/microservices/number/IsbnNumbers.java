@@ -1,8 +1,8 @@
 package net.shyshkin.study.quarkus.microservices.number;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import javax.json.bind.annotation.JsonbProperty;
 import javax.json.bind.annotation.JsonbTransient;
 import java.time.Instant;
 import java.util.Objects;
@@ -11,11 +11,11 @@ import java.util.Objects;
 public class IsbnNumbers {
 
     @Schema(description = "ISBN number with 10 digits", required = true)
-    @JsonProperty("isbn_10")
+    @JsonbProperty("isbn_10")
     private String isbn10;
 
     @Schema(description = "ISBN number with 13 digits", required = true)
-    @JsonProperty("isbn_13")
+    @JsonbProperty("isbn_13")
     private String isbn13;
 
     @JsonbTransient
