@@ -32,7 +32,7 @@ public class BookResourceTest {
                 .statusCode(201)
                 .body("author", is("Art Shyshkin"))
                 .body("genre", is("Fantasy"))
-                .body("isbn_13", is("We need to get ISBN from external service"))
+                .body("isbn_13", startsWith("13-"))
                 .body("title", is("My great book"))
                 .body("year_of_publication", is(2020))
                 .body("creation_date", is(LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))))
