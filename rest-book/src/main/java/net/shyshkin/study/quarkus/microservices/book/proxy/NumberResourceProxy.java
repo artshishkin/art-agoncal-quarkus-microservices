@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@RegisterRestClient
+@RegisterRestClient(configKey = "number.resource.proxy")
 @Path("/api/numbers")
 public interface NumberResourceProxy {
 

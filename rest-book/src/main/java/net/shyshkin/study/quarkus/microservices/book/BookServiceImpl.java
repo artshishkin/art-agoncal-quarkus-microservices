@@ -5,13 +5,11 @@ import net.shyshkin.study.quarkus.microservices.book.proxy.NumberResourceProxy;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.time.Instant;
 
 @ApplicationScoped
 public class BookServiceImpl implements BookService {
 
-    @Inject
     @RestClient
     NumberResourceProxy proxy;
 
