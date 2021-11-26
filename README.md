@@ -101,3 +101,6 @@ curl --location --request POST 'http://localhost:8702/api/books' \
     -  `docker run -p 8702:8080 artarkatesoft/rest-book:native-latest` - start time 0.033s, size 157MB
     -  `docker run -p 8701:8080 artarkatesoft/rest-number` - start time 0.057s, size 150MB
 
+#####  52. Executing Docker Containers
+
+curl in Linux - 6-9ms
