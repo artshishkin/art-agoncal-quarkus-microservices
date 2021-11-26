@@ -26,6 +26,15 @@ tasks.withType(JavaCompile){
     options.compilerArgs.add('-parameters')
 }
 
+tasks.named("dockerfile") {
+    args("-Xmx128m")
+    instruction """ENV MICRONAUT_SERVER_PORT=8080 """
+}
+
+tasks.named("dockerBuild") {
+    images = ["artarkatesoft/mn-rest-number:jvm-$project.version"]
+}
+
 dependencies {
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
@@ -40,7 +49,7 @@ dependencies {
 
 
 application {
-    mainClass.set("net.shyshkin.study.micronaut.Application")
+    mainClass.set("net.shyshkin.study.micronaut.number.Application")
 }
 java {
     sourceCompatibility = JavaVersion.toVersion("11")

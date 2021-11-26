@@ -127,4 +127,16 @@ Redoc
 Rapidoc
     -  `http://localhost:8701/rapidoc`
 
+#####  6.5 Containerizing JVM Application
+
+1.  View Dockerfile
+    -  `gradlew dockerfile`
+2.  Build docker image
+    -  `gradle dockerBuild`    
+3.  Run Docker App
+    -  `docker run -p 8701:8080 artarkatesoft/mn-rest-number:jvm-0.1`
+    -  size 340MB
+    -  start time 1863ms, 1235ms
+
+
 
