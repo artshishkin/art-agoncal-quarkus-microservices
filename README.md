@@ -138,5 +138,11 @@ Rapidoc
     -  size 340MB
     -  start time 1863ms, 1235ms
 
+#####  6.6 Containerizing Native Linux Executable
 
-
+1.  Build docker native image:
+    -  `gradlew clean dockerBuildNative`
+2.  Run Docker App
+    -  `docker run -p 8701:8080 artarkatesoft/mn-rest-number:native-0.1`
+    -  size 76.8MB
+    -  start time 485ms, 138ms

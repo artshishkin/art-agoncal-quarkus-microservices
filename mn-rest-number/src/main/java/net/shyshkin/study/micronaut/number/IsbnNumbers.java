@@ -2,11 +2,13 @@ package net.shyshkin.study.micronaut.number;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.micronaut.core.annotation.Introspected;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.Instant;
 import java.util.Objects;
 
+@Introspected
 @Schema(description = "Several ISBN numbers for books")
 public class IsbnNumbers {
 
