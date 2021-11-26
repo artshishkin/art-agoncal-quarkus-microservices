@@ -106,3 +106,11 @@ curl --location --request POST 'http://localhost:8702/api/books' \
 curl in Linux:
     -  native docker image - 6-9ms
     -  jvm docker image - 15-36ms
+
+####  6 Compare with Micronaut
+
+#####  6.1 Base Import
+
+Feature:
+    -  `openapi`
+
