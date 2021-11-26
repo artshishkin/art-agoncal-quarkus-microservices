@@ -1,3 +1,9 @@
 micronaut:
   application:
     name: mnRestNumber
+  server:
+    port: 8701
+
+
+
+

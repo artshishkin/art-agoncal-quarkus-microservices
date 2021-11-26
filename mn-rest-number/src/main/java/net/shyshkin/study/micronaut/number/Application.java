@@ -1,4 +1,4 @@
-package net.shyshkin.study.micronaut;
+package net.shyshkin.study.micronaut.number;
 
 import io.micronaut.runtime.Micronaut;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
