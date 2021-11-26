@@ -103,4 +103,6 @@ curl --location --request POST 'http://localhost:8702/api/books' \
 
 #####  52. Executing Docker Containers
 
-curl in Linux - 6-9ms
+curl in Linux:
+    -  native docker image - 6-9ms
+    -  jvm docker image - 15-36ms

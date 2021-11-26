@@ -1,0 +1,13 @@
+version: '3'
+services:
+  number-service:
+    image: artarkatesoft/rest-number:jvm-latest
+    ports:
+      - 8701:8080
+
+  book-service:
+    image: artarkatesoft/rest-book:jvm-latest
+    ports:
+      - 8702:8080
+    environment:
+      'quarkus.rest-client."number.resource.proxy".url': http://number-service:8080
