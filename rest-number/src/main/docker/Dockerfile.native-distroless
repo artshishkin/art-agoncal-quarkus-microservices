@@ -17,6 +17,8 @@
 FROM quay.io/quarkus/quarkus-distroless-image:1.0
 COPY target/*-runner /application
 
+ENV QUARKUS_HTTP_PORT=8080
+
 EXPOSE 8080
 USER nonroot
 

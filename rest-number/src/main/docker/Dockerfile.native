@@ -21,6 +21,8 @@ RUN chown 1001 /work \
     && chown 1001:root /work
 COPY --chown=1001:root target/*-runner /work/application
 
+ENV QUARKUS_HTTP_PORT=8080
+
 EXPOSE 8080
 USER 1001
 

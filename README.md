@@ -78,3 +78,26 @@ curl --location --request POST 'http://localhost:8702/api/books' \
 ```    
 3.  Build native executables for Linux (from Windows in Docker)
     -  `mvn package -Dquarkus.native.container-build=true -Pnative`
+
+#####  50. Containerizing Native Linux Executables
+
+1.  Add extension `docker`
+    -  `mvn quarkus:add-extension -Dextensions=docker`
+2.  Configure image group and tags
+    -  in pom.xml
+    -  in application.properties
+3.  Configure Dockerfiles to run on port 8080
+    -  `ENV QUARKUS_HTTP_PORT=8080`
+4.  Containerizing JVM images
+    - `mvn package -Dquarkus.container-image.build=true`
+5.  Run containers (for testing build OK)
+    -  `docker run -p 8702:8080 artarkatesoft/rest-book:jvm-latest` - start time 1.57s, size 525MB
+       -  curl it -> ok with fallback
+    -  `docker run -p 8701:8080 artarkatesoft/rest-number:jvm-latest` - start time 1.48s, size 522MB
+        -  curl it -> `curl http://localhost:8701/api/numbers`
+6.  Containerizing Linux Native Executables
+    -  `mvn package -Dquarkus.container-image.build=true -Dquarkus.native.container-build=true -Pnative`
+7.  Run
+    -  `docker run -p 8702:8080 artarkatesoft/rest-book:native-latest` - start time 0.033s, size 157MB
+    -  `docker run -p 8701:8080 artarkatesoft/rest-number` - start time 0.057s, size 150MB
+
