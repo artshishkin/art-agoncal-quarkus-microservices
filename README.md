@@ -114,3 +114,17 @@ curl in Linux:
 Feature:
     -  `openapi`
 
+#####  6.3 Configure OpenAPI
+
+[Generating OpenAPI Views](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html#openApiViews)
+
+Specification:
+    -  `http://localhost:8701/swagger/number-microservice-0.1-micronaut.yml`
+Swagger-UI
+    -  `http://localhost:8701/swagger-ui`
+Redoc
+    -  `http://localhost:8701/redoc`
+Rapidoc
+    -  `http://localhost:8701/rapidoc`
+
+

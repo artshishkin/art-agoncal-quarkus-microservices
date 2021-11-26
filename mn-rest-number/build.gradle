@@ -19,6 +19,13 @@ micronaut {
     }
 }
 
+tasks.withType(JavaCompile){
+    options.fork = true
+    options.forkOptions.jvmArgs << '-Dmicronaut.openapi.views.spec=redoc.enabled=true,rapidoc.enabled=true,swagger-ui.enabled=true,swagger-ui.theme=flattop'
+    options.encoding = "UTF-8"
+    options.compilerArgs.add('-parameters')
+}
+
 dependencies {
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
