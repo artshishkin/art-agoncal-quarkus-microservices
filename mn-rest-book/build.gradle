@@ -1,0 +1,73 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("io.micronaut.application") version "2.0.8"
+}
+
+version = "0.1"
+group = "net.shyshkin.study.micronaut.book"
+
+repositories {
+    mavenCentral()
+}
+
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("net.shyshkin.study.micronaut.book.*")
+    }
+}
+
+tasks.withType(JavaCompile){
+    options.fork = true
+    options.forkOptions.jvmArgs << '-Dmicronaut.openapi.views.spec=redoc.enabled=true,rapidoc.enabled=true,swagger-ui.enabled=true,swagger-ui.theme=flattop'
+    options.encoding = "UTF-8"
+    options.compilerArgs.add('-parameters')
+}
+
+
+tasks.named("dockerfile") {
+    args("-Xmx128m")
+    instruction """ENV MICRONAUT_SERVER_PORT=8080 """
+}
+
+tasks.named("dockerfileNative") {
+    args("-Xmx128m")
+    instruction """EXPOSE 8080 """
+    instruction """ENV MICRONAUT_SERVER_PORT=8080 """
+}
+
+tasks.named("dockerBuild") {
+    images = ["artarkatesoft/$project.name:jvm-$project.version"]
+}
+
+tasks.named("dockerBuildNative") {
+    images = ["artarkatesoft/$project.name:native-$project.version",
+              "artarkatesoft/$project.name:latest"]
+}
+
+
+dependencies {
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+    annotationProcessor("io.micronaut.openapi:micronaut-openapi")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-runtime")
+    implementation("io.swagger.core.v3:swagger-annotations")
+    implementation("javax.annotation:javax.annotation-api")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    compileOnly("org.graalvm.nativeimage:svm")
+
+    implementation("io.micronaut:micronaut-validation")
+
+}
+
+
+application {
+    mainClass.set("net.shyshkin.study.micronaut.book.Application")
+}
+java {
+    sourceCompatibility = JavaVersion.toVersion("11")
+    targetCompatibility = JavaVersion.toVersion("11")
+}
+
