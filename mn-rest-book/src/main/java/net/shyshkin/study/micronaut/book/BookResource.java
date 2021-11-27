@@ -7,6 +7,7 @@ import io.micronaut.http.annotation.Consumes;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Produces;
+import io.micronaut.retry.annotation.Retryable;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Named;
@@ -24,6 +25,7 @@ public class BookResource {
 
     public BookResource(@Named("mainBookService") BookService bookService, FallbackBookService fallback) {
         this.bookService = bookService;
+        logger.info("{}", bookService);
         this.fallback = fallback;
     }
 
@@ -35,33 +37,33 @@ public class BookResource {
             description = "Creates a Book with an ISBN number"
     )
 //    @Fallback(fallbackMethod = "fallbackCreateABook")
-//    @Retry(delay = 900, maxRetries = 2)
+    @Retryable(delay = "900ms", attempts = "2")
     public HttpResponse<Book> createABook(
-             String title,
-             String author,
-             int year,
-             String genre) {
+            String title,
+            String author,
+            int year,
+            String genre) {
 
         try {
             logger.info("Trying to create a book");
-            Book book = fallback.createABook(title, author, year, genre);
-//            Book book = bookService.createABook(title, author, yearOfPublication, genre);
+//            Book book = fallback.createABook(title, author, year, genre);
+            Book book = bookService.createABook(title, author, year, genre);
             return HttpResponse.status(HttpStatus.CREATED).body(book);
         } catch (Exception e) {
-            logger.warn(e.getMessage());
+            logger.error("Error in creating book: {}", e.getMessage());
             throw e;
         }
     }
 
-//    public Response fallbackCreateABook(
-//            String title,
-//            String author,
-//            int yearOfPublication,
-//            String genre) {
-//
-//        Book book = fallback.createABook(title, author, yearOfPublication, genre);
-//
-//        return Response.status(206).entity(book).build();
-//    }
+    public HttpResponse<Book> fallbackCreateABook(
+            String title,
+            String author,
+            int yearOfPublication,
+            String genre) {
+
+        Book book = fallback.createABook(title, author, yearOfPublication, genre);
+
+        return HttpResponse.status(HttpStatus.PARTIAL_CONTENT).body(book);
+    }
 
 }

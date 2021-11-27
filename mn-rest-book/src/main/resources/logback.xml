@@ -11,6 +11,7 @@
     </appender>
 
     <logger name="net.shyshkin.study" level="DEBUG"/>
+    <logger name="io.micronaut.http" level="DEBUG"/>
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
