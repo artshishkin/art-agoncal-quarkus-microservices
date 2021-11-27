@@ -18,6 +18,12 @@ micronaut:
         paths: classpath:META-INF/swagger/views/swagger-ui
         mapping: /swagger-ui/**
 
-
+  http:
+    services:
+      number:
+        urls:
+          - http://127.0.0.1:8701
+        read-timeout: 1s # (1)
+        connect-timeout: 300ms
 
 
