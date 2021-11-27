@@ -12,6 +12,7 @@
 
     <logger name="net.shyshkin.study" level="DEBUG"/>
     <logger name="io.micronaut.http" level="DEBUG"/>
+    <logger name="io.micronaut.retry.intercept" level="OFF"/>
 
     <root level="info">
         <appender-ref ref="STDOUT"/>
