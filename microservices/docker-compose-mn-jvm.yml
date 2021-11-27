@@ -1,0 +1,15 @@
+version: '3'
+services:
+  number-service:
+    image: artarkatesoft/mn-rest-number:jvm-0.1
+    ports:
+      - 8701:8080
+
+  book-service:
+    image: artarkatesoft/mn-rest-book:jvm-0.1
+    ports:
+      - 8702:8080
+    environment:
+      'micronaut.http.services.number.urls': http://number-service:8080
+
+
